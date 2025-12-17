@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DivPlus</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#7b218d" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>DivPlus</h1>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="geral">Geral</button>
+        <button class="tab" data-tab="salario">Salário</button>
+        <button class="tab" data-tab="dca">DCA</button>
+      </div>
+
+      <div class="app-content">
+        <div class="tab-content active" id="geral">
+          <div class="card">
+            <label>Valor (R$)</label><input id="valor" type="text" />
+          </div>
+          <h2>Distribuição Geral</h2>
+          <div class="card">
+            <label>DCA</label><input id="p_dca" /><span id="r_dca"></span>
+          </div>
+          <div class="card">
+            <label>Caixa</label><input id="p_caixa" /><span id="r_caixa"></span>
+          </div>
+          <div class="card">
+            <label>FGCP</label><input id="p_fgcp" /><span id="r_fgcp"></span>
+          </div>
+          <div class="card">
+            <label>Salário</label><input id="p_salario" /><span
+              id="r_salario"
+            ></span>
+          </div>
+          <p><span id="pct_total_f1"></span></p>
+        </div>
+
+        <div class="tab-content" id="salario">
+          <h2>Salário</h2>
+          <div class="card">
+            <label>Despesas</label><input id="p_sal_despesas" /><span
+              id="r_sal_despesas"
+            ></span>
+          </div>
+          <div class="card">
+            <label>Sonhos</label><input id="p_sal_re" /><span
+              id="r_sal_re"
+            ></span>
+          </div>
+          <div class="card">
+            <label>Saúde</label><input id="p_sal_saude" /><span
+              id="r_sal_saude"
+            ></span>
+          </div>
+          <div class="card">
+            <label>Lazer</label><input id="p_sal_lazer" /><span
+              id="r_sal_lazer"
+            ></span>
+          </div>
+          <p><span id="pct_total_sal"></span></p>
+        </div>
+
+        <div class="tab-content" id="dca">
+          <h2>DCA</h2>
+          <div class="card">
+            <label>Ações</label><input id="p_dca_int" /><span
+              id="r_dca_int"
+            ></span>
+          </div>
+          <div class="card">
+            <label>FIIs</label><input id="p_dca_acoes" /><span
+              id="r_dca_acoes"
+            ></span>
+          </div>
+          <div class="card">
+            <label>ETFs</label><input id="p_dca_fiis" /><span
+              id="r_dca_fiis"
+            ></span>
+          </div>
+          <div class="card">
+            <label>Cripto</label><input id="p_dca_cripto" /><span
+              id="r_dca_cripto"
+            ></span>
+          </div>
+          <div class="card">
+            <label>DCA Internacional</label><input id="p_dca_etf" /><span
+              id="r_dca_etf"
+            ></span>
+          </div>
+          <div class="card">
+            <label>Put</label><input id="p_dca_put" /><span
+              id="r_dca_put"
+            ></span>
+          </div>
+          <p><span id="pct_total_dca"></span></p>
+        </div>
+      </div>
+
+      <button id="reset">Restaurar Padrões</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("service-worker.js");
+      }
+    </script>
+  </body>
+</html>
