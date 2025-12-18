@@ -1,92 +1,56 @@
 const $ = (id) => document.getElementById(id);
-const PADRAO = {
-  valor: "",
-  p_dca: 40,
-  p_caixa: 25,
-  p_fgcp: 10,
-  p_salario: 25,
-  p_sal_despesas: 60,
-  p_sal_re: 15,
-  p_sal_saude: 10,
-  p_sal_lazer: 15,
-  p_dca_int: 20,
-  p_dca_acoes: 20,
-  p_dca_fiis: 20,
-  p_dca_cripto: 15,
-  p_dca_etf: 15,
-  p_dca_put: 10,
-};
-const num = (v) =>
-  parseFloat((v || "").replace("%", "").replace(",", ".")) || 0;
 const moeda = (v) =>
   v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-const pct = (id) => num($(id).value) / 100;
-function calc() {
-  const V = num($("valor").value);
-  const r_dca = V * pct("p_dca"),
-    r_caixa = V * pct("p_caixa"),
-    r_fgcp = V * pct("p_fgcp"),
-    r_sal = V * pct("p_salario");
-  $("r_dca").textContent = moeda(r_dca);
-  $("r_caixa").textContent = moeda(r_caixa);
-  $("r_fgcp").textContent = moeda(r_fgcp);
-  $("r_salario").textContent = moeda(r_sal);
-  $("pct_total_f1").textContent =
-    (
-      (pct("p_dca") + pct("p_caixa") + pct("p_fgcp") + pct("p_salario")) *
-      100
-    ).toFixed(0) + "%";
-  $("r_sal_despesas").textContent = moeda(r_sal * pct("p_sal_despesas"));
-  $("r_sal_re").textContent = moeda(r_sal * pct("p_sal_re"));
-  $("r_sal_saude").textContent = moeda(r_sal * pct("p_sal_saude"));
-  $("r_sal_lazer").textContent = moeda(r_sal * pct("p_sal_lazer"));
-  $("pct_total_sal").textContent =
-    (
-      (pct("p_sal_despesas") +
-        pct("p_sal_re") +
-        pct("p_sal_saude") +
-        pct("p_sal_lazer")) *
-      100
-    ).toFixed(0) + "%";
-  $("r_dca_int").textContent = moeda(r_dca * pct("p_dca_int"));
-  $("r_dca_acoes").textContent = moeda(r_dca * pct("p_dca_acoes"));
-  $("r_dca_fiis").textContent = moeda(r_dca * pct("p_dca_fiis"));
-  $("r_dca_cripto").textContent = moeda(r_dca * pct("p_dca_cripto"));
-  $("r_dca_etf").textContent = moeda(r_dca * pct("p_dca_etf"));
-  $("r_dca_put").textContent = moeda(r_dca * pct("p_dca_put"));
-  $("pct_total_dca").textContent =
-    (
-      (pct("p_dca_int") +
-        pct("p_dca_acoes") +
-        pct("p_dca_fiis") +
-        pct("p_dca_cripto") +
-        pct("p_dca_etf") +
-        pct("p_dca_put")) *
-      100
-    ).toFixed(0) + "%";
+
+function soma(ids) {
+  return ids.reduce((t, i) => t + (+$(i).value || 0), 0);
 }
+
+function calc() {
+  const total = +$("valorTotal").value || 0;
+
+  const dca = (total * $("p_dca").value) / 100;
+  const salario = (total * $("p_salario").value) / 100;
+
+  $("r_dca").textContent = moeda(dca);
+  $("r_caixa").textContent = moeda((total * $("p_caixa").value) / 100);
+  $("r_fgcp").textContent = moeda((total * $("p_fgcp").value) / 100);
+  $("r_salario").textContent = moeda(salario);
+
+  $("r_sd").textContent = moeda((salario * $("p_sd").value) / 100);
+  $("r_ss").textContent = moeda((salario * $("p_ss").value) / 100);
+  $("r_ssa").textContent = moeda((salario * $("p_ssa").value) / 100);
+  $("r_sl").textContent = moeda((salario * $("p_sl").value) / 100);
+
+  $("r_da").textContent = moeda((dca * $("p_da").value) / 100);
+  $("r_df").textContent = moeda((dca * $("p_df").value) / 100);
+  $("r_dc").textContent = moeda((dca * $("p_dc").value) / 100);
+  $("r_de").textContent = moeda((dca * $("p_de").value) / 100);
+  $("r_do").textContent = moeda((dca * $("p_do").value) / 100);
+
+  $("total_geral").textContent =
+    "Total: " + soma(["p_dca", "p_caixa", "p_fgcp", "p_salario"]) + "%";
+  $("total_salario").textContent =
+    "Total: " + soma(["p_sd", "p_ss", "p_ssa", "p_sl"]) + "%";
+  $("total_dca").textContent =
+    "Total: " + soma(["p_da", "p_df", "p_dc", "p_de", "p_do"]) + "%";
+}
+
 document
   .querySelectorAll("input")
-  .forEach((el) => el.addEventListener("input", calc));
+  .forEach((i) => i.addEventListener("input", calc));
+
+document.getElementById("reset").onclick = () => location.reload();
+
+/* ABAS */
 document.querySelectorAll(".tab").forEach((tab) => {
   tab.onclick = () => {
     document
-      .querySelectorAll(".tab")
-      .forEach((t) => t.classList.remove("active"));
-    document
-      .querySelectorAll(".tab-content")
-      .forEach((c) => c.classList.remove("active"));
+      .querySelectorAll(".tab,.tab-content")
+      .forEach((e) => e.classList.remove("active"));
     tab.classList.add("active");
     document.getElementById(tab.dataset.tab).classList.add("active");
   };
 });
-$("reset").onclick = () => {
-  Object.keys(PADRAO).forEach((id) => {
-    $(id) && ($(id).value = id === "valor" ? "" : PADRAO[id] + "%");
-  });
-  calc();
-};
-Object.keys(PADRAO).forEach((id) => {
-  $(id) && ($(id).value = id === "valor" ? "" : PADRAO[id] + "%");
-});
+
 calc();

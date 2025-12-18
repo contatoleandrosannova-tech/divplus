@@ -4,111 +4,168 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DivPlus</title>
-    <link rel="stylesheet" href="styles.css" />
     <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#7b218d" />
+    <meta name="theme-color" content="#9b4eff" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="icons/icon-192.png" type="image/png" />
   </head>
   <body>
-    <div class="container">
+    <div class="app">
       <h1>DivPlus</h1>
 
+      <!-- ABAS -->
       <div class="tabs">
         <button class="tab active" data-tab="geral">Geral</button>
         <button class="tab" data-tab="salario">Salário</button>
         <button class="tab" data-tab="dca">DCA</button>
       </div>
 
-      <div class="app-content">
-        <div class="tab-content active" id="geral">
-          <div class="card">
-            <label>Valor (R$)</label><input id="valor" type="text" />
-          </div>
-          <h2>Distribuição Geral</h2>
-          <div class="card">
-            <label>DCA</label><input id="p_dca" /><span id="r_dca"></span>
-          </div>
-          <div class="card">
-            <label>Caixa</label><input id="p_caixa" /><span id="r_caixa"></span>
-          </div>
-          <div class="card">
-            <label>FGCP</label><input id="p_fgcp" /><span id="r_fgcp"></span>
-          </div>
-          <div class="card">
-            <label>Salário</label><input id="p_salario" /><span
-              id="r_salario"
-            ></span>
-          </div>
-          <p><span id="pct_total_f1"></span></p>
-        </div>
-
-        <div class="tab-content" id="salario">
-          <h2>Salário</h2>
-          <div class="card">
-            <label>Despesas</label><input id="p_sal_despesas" /><span
-              id="r_sal_despesas"
-            ></span>
-          </div>
-          <div class="card">
-            <label>Sonhos</label><input id="p_sal_re" /><span
-              id="r_sal_re"
-            ></span>
-          </div>
-          <div class="card">
-            <label>Saúde</label><input id="p_sal_saude" /><span
-              id="r_sal_saude"
-            ></span>
-          </div>
-          <div class="card">
-            <label>Lazer</label><input id="p_sal_lazer" /><span
-              id="r_sal_lazer"
-            ></span>
-          </div>
-          <p><span id="pct_total_sal"></span></p>
-        </div>
-
-        <div class="tab-content" id="dca">
-          <h2>DCA</h2>
-          <div class="card">
-            <label>Ações</label><input id="p_dca_int" /><span
-              id="r_dca_int"
-            ></span>
-          </div>
-          <div class="card">
-            <label>FIIs</label><input id="p_dca_acoes" /><span
-              id="r_dca_acoes"
-            ></span>
-          </div>
-          <div class="card">
-            <label>ETFs</label><input id="p_dca_fiis" /><span
-              id="r_dca_fiis"
-            ></span>
-          </div>
-          <div class="card">
-            <label>Cripto</label><input id="p_dca_cripto" /><span
-              id="r_dca_cripto"
-            ></span>
-          </div>
-          <div class="card">
-            <label>DCA Internacional</label><input id="p_dca_etf" /><span
-              id="r_dca_etf"
-            ></span>
-          </div>
-          <div class="card">
-            <label>Put</label><input id="p_dca_put" /><span
-              id="r_dca_put"
-            ></span>
-          </div>
-          <p><span id="pct_total_dca"></span></p>
-        </div>
+      <!-- VALOR TOTAL -->
+      <div class="card">
+        <span>Valor Total</span>
+        <input id="valorTotal" type="number" placeholder="0" />
       </div>
 
-      <button id="reset">Restaurar Padrões</button>
+      <!-- GERAL -->
+      <div class="tab-content active" id="geral">
+        <div class="card">
+          <span>DCA</span>
+          <div class="percent-box">
+            <input id="p_dca" type="number" value="60" />
+            <span>%</span>
+          </div>
+          <strong id="r_dca">R$ 0,00</strong>
+        </div>
+
+        <div class="card">
+          <span>Caixa</span>
+          <div class="percent-box">
+            <input id="p_caixa" type="number" value="10" />
+            <span>%</span>
+          </div>
+          <strong id="r_caixa">R$ 0,00</strong>
+        </div>
+
+        <div class="card">
+          <span>FGCP</span>
+          <div class="percent-box">
+            <input id="p_fgcp" type="number" value="15" />
+            <span>%</span>
+          </div>
+          <strong id="r_fgcp">R$ 0,00</strong>
+        </div>
+
+        <div class="card">
+          <span>Salário</span>
+          <div class="percent-box">
+            <input id="p_salario" type="number" value="15" />
+            <span>%</span>
+          </div>
+          <strong id="r_salario">R$ 0,00</strong>
+        </div>
+
+        <div class="total" id="total_geral">Total: 100%</div>
+      </div>
+
+      <!-- SALÁRIO -->
+      <div class="tab-content" id="salario">
+        <div class="card">
+          <span>Despesas</span>
+          <div class="percent-box">
+            <input id="p_sd" type="number" value="60" />
+            <span>%</span>
+          </div>
+          <strong id="r_sd">R$ 0,00</strong>
+        </div>
+
+        <div class="card">
+          <span>Sonhos</span>
+          <div class="percent-box">
+            <input id="p_ss" type="number" value="15" />
+            <span>%</span>
+          </div>
+          <strong id="r_ss">R$ 0,00</strong>
+        </div>
+
+        <div class="card">
+          <span>Saúde</span>
+          <div class="percent-box">
+            <input id="p_ssa" type="number" value="10" />
+            <span>%</span>
+          </div>
+          <strong id="r_ssa">R$ 0,00</strong>
+        </div>
+
+        <div class="card">
+          <span>Lazer</span>
+          <div class="percent-box">
+            <input id="p_sl" type="number" value="15" />
+            <span>%</span>
+          </div>
+          <strong id="r_sl">R$ 0,00</strong>
+        </div>
+
+        <div class="total" id="total_salario">Total: 100%</div>
+      </div>
+
+      <!-- DCA -->
+      <div class="tab-content" id="dca">
+        <div class="card">
+          <span>Ações</span>
+          <div class="percent-box">
+            <input id="p_da" type="number" value="25" />
+            <span>%</span>
+          </div>
+          <strong id="r_da">R$ 0,00</strong>
+        </div>
+
+        <div class="card">
+          <span>FIIs</span>
+          <div class="percent-box">
+            <input id="p_df" type="number" value="25" />
+            <span>%</span>
+          </div>
+          <strong id="r_df">R$ 0,00</strong>
+        </div>
+
+        <div class="card">
+          <span>Cripto</span>
+          <div class="percent-box">
+            <input id="p_dc" type="number" value="20" />
+            <span>%</span>
+          </div>
+          <strong id="r_dc">R$ 0,00</strong>
+        </div>
+
+        <div class="card">
+          <span>ETF</span>
+          <div class="percent-box">
+            <input id="p_de" type="number" value="15" />
+            <span>%</span>
+          </div>
+          <strong id="r_de">R$ 0,00</strong>
+        </div>
+
+        <div class="card">
+          <span>Oportunidade</span>
+          <div class="percent-box">
+            <input id="p_do" type="number" value="15" />
+            <span>%</span>
+          </div>
+          <strong id="r_do">R$ 0,00</strong>
+        </div>
+
+        <div class="total" id="total_dca">Total: 100%</div>
+      </div>
+
+      <button id="reset">Resetar</button>
     </div>
 
     <script src="script.js"></script>
+
     <script>
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("service-worker.js");
+        navigator.serviceWorker.register("sw.js");
       }
     </script>
   </body>
