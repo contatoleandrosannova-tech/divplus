@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DivPlus</title>
     <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#9b4eff" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="icons/icon-192.png" type="image/png" />
   </head>
+
   <body>
     <div class="app">
       <h1>DivPlus</h1>
@@ -20,14 +20,15 @@
         <button class="tab" data-tab="dca">DCA</button>
       </div>
 
-      <!-- VALOR TOTAL -->
-      <div class="card">
-        <span>Valor Total</span>
-        <input id="valorTotal" type="number" placeholder="0" />
-      </div>
-
-      <!-- GERAL -->
+      <!-- ===== GERAL ===== -->
       <div class="tab-content active" id="geral">
+        <!-- VALOR TOTAL GERAL -->
+        <div class="card">
+          <span>Valor Total</span>
+          <input id="valorTotal" type="number" placeholder="0" />
+          <strong></strong>
+        </div>
+
         <div class="card">
           <span>DCA</span>
           <div class="percent-box">
@@ -49,26 +50,24 @@
         <div class="card">
           <span>FGCP</span>
           <div class="percent-box">
-            <input id="p_fgcp" type="number" value="15" />
+            <input id="p_fgcp" type="number" value="30" />
             <span>%</span>
           </div>
           <strong id="r_fgcp">R$ 0,00</strong>
         </div>
 
-        <div class="card">
-          <span>Salário</span>
-          <div class="percent-box">
-            <input id="p_salario" type="number" value="15" />
-            <span>%</span>
-          </div>
-          <strong id="r_salario">R$ 0,00</strong>
-        </div>
-
-        <div class="total" id="total_geral">Total: 100%</div>
+        <div class="total">Total: 100%</div>
       </div>
 
-      <!-- SALÁRIO -->
+      <!-- ===== SALÁRIO ===== -->
       <div class="tab-content" id="salario">
+        <!-- VALOR TOTAL SALÁRIO -->
+        <div class="card">
+          <span>Valor Total Salário</span>
+          <input id="valorSalario" type="number" placeholder="0" />
+          <strong></strong>
+        </div>
+
         <div class="card">
           <span>Despesas</span>
           <div class="percent-box">
@@ -105,10 +104,10 @@
           <strong id="r_sl">R$ 0,00</strong>
         </div>
 
-        <div class="total" id="total_salario">Total: 100%</div>
+        <div class="total">Total: 100%</div>
       </div>
 
-      <!-- DCA -->
+      <!-- ===== DCA ===== -->
       <div class="tab-content" id="dca">
         <div class="card">
           <span>Ações</span>
@@ -155,14 +154,14 @@
           <strong id="r_do">R$ 0,00</strong>
         </div>
 
-        <div class="total" id="total_dca">Total: 100%</div>
+        <div class="total">Total: 100%</div>
       </div>
 
+      <!-- BOTÃO RESET -->
       <button id="reset">Resetar</button>
     </div>
 
     <script src="script.js"></script>
-
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("sw.js");

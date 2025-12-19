@@ -6,6 +6,7 @@
   "background_color": "#0f0f0f",
   "theme_color": "#9b4eff",
   "orientation": "portrait",
+  "description": "App de distribuição financeira pessoal",
   "icons": [
     {
       "src": "icons/icon-192.png",
@@ -13,7 +14,7 @@
       "type": "image/png"
     },
     {
-      "src": "icons/icon-192.png",
+      "src": "icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
