@@ -1,4 +1,4 @@
-const CACHE_NAME = "divplus-v1";
+const CACHE_NAME = "divplus-v7";
 
 const FILES_TO_CACHE = [
   "./",
@@ -44,3 +44,4 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
+
